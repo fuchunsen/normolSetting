@@ -1,0 +1,107 @@
+常用常量
+CACHE_PATH 缓存文件夹地址 
+SITE_PROTOCOL 主机协议 
+SITE_URL 当前访问的主机名 
+HTTP_REFERER  来源 
+SYS_START_TIME 系统开始时间 
+CHARSET  页面字符集 
+SYS_TIME 当前时间戳 
+WEB_PATH  网站根路径 
+JS_PATH  JS路径 
+CSS_PATH CSS路径 
+IMG_PATH  图片路径 
+APP_PATH  动态程序路径  
+PLUGIN_STATICS_PATH 应用静态文件路径
+
+当前栏目位置（面包屑导航）：
+首页 > {catpos($catid)} 正文
+
+
+$CATEGORYS 获取所有栏目信息
+$CAT  获取当前栏目所有信息
+
+获取指定栏目信息：
+{$CATEGORYS[$catid][description]}显示当前栏目描述
+{$CATEGORYS[$catid][url]}        显示当前栏目链接
+{$CATEGORYS[$catid][catname]}    显示当前栏目名称
+{$CATEGORYS[$catid][catdir]}     当前栏目目录名
+{$CATEGORYS[$catid][description]}当前栏目描述
+{$CATEGORYS[$catid][image]}      当前栏目图片  
+{$CATEGORYS[$catid][items]}      当前栏目的内容数
+{$CATEGORYS[$catid][hits]}       当前栏目的点击数
+{$CATEGORYS[$catid][parentid]}   当前栏目的上级栏目id 
+
+父级栏目： $top_parentid
+{$CAT[parentid]}                      当前栏目的父级栏目id
+{$CATEGORYS[$CAT[catid]][arrchildid]} 父级栏目的所有子栏目id    
+{$CATEGORYS[$top_parentid][catname]}父级栏目名称
+{$CATEGORYS[$top_parentid][url]}    父级栏目url
+{$CATEGORYS[$top_parentid][XXX]}    其他字段：只需要改动XXX
+
+
+
+修改相关文章排序的方法：
+按发布时间排序：order="inputtime DESC"
+按ID降序排序：  order="id DESC"
+按ID升序排序：  order="id ASC"
+
+php时间戳转换成时间：
+date('Y-m-d H:i:s', 1156219870);
+
+
+
+PHP strip_tags函数对输出的内容进行过滤:
+
+<li>123123123123</li>
+<li>1232132132...</li>
+
+{str_cut($val[content],1500,'...')}
+{str_cut(strip_tags($val[content]),1500,'…')}
+
+
+
+文章列表分页  
+ 需要分页的时候         page="$page"     
+ 控制每页显示文章数量   num="4" 
+
+ {pc:content  action="lists" catid="$catid" order="id DESC" num="4" page="$page"}
+  {loop $data $v}
+
+   {/loop}
+  {$pages}
+{/pc}
+
+
+
+列表页调取点击量：
+{php $db = pc_base::load_model("hits_model"); $_r = $db->get_one(array("hitsid"=>"c-".$modelid."-".$v[id])); $views = $_r[views]; }
+获取到的点击量：  $views
+
+
+
+
+文章页：
+
+1.文章标题    {$title}
+2.文章发布时间{$inputtime}
+3.文章来源    {$copyfrom}
+4.文章描述    {$description}
+6.文章内容    {$content}
+7.文章作者    {$username}
+8.文章获取点击
+<span id="hits"></span>
+<script language="JavaScript" src="{APP_PATH}api.php?op=count&id={$id}&modelid={$modelid}"></script>
+
+
+友情链接：
+
+{pc:link  action="type_list" typeid="0" siteid="1" linktype="1" order="listorder DESC" num="8" return="links"}
+
+linktype="1"   logo链接
+linktype="0"   文字链接
+
+return="links" 返回数据接收的变量名
+
+{loop  $links   $b}
+    <?php var_dump($b) ?>
+{/loop}

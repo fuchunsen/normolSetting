@@ -1,0 +1,41 @@
+/*
+body margin 8px
+ul,ol margin 16px padding-left 40px
+li list-style
+dl margin:16px 0;
+dd margin-left 40px
+h1-h6 margin
+p margin:16px 0;
+input border 2px padding:1px 0;
+textarea padding 2px border 1px;
+figure margin:16px 40px;
+figcaption
+IE6-10 a标签包裹的img有边框
+*/
+body{
+	font: 14px/1.5 "Microsoft Yahei","Heiti SC",sans-serif;
+}
+body,dl,dd,h1,h2,h3,h4,h5,h6,figure{
+	margin: 0;
+}
+ul,ol{
+	margin: 0;
+	padding: 0;
+}
+li{
+	list-style: none;
+}
+input{
+	padding: 0;
+	border: 1px solid #ccc;
+}
+textarea{
+	padding: 0;
+}
+img{
+	border: 0;
+}
+a{
+	color: #333;
+	text-decoration: none;
+}
