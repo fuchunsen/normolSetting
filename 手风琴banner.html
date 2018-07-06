@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>banner2</title>
+	<script src="jquery-3.2.1.min.js"></script>
+</head>
+<style>
+	body,ul,li{
+		margin: 0px;
+		padding: 0px;
+		list-style: none;
+	}
+	.banner{
+		width: 1000px;
+		height: 500px;
+		border: 1px solid #000;
+		margin: 10px auto;
+		overflow: hidden;
+	}
+	.banner .swipper{
+		width: 100%;
+		height: 100%;
+		position: relative;
+	}
+	.banner .swipper li{
+		width: 600px;
+		height: 100%;
+		position: absolute;
+		top: 0px;
+		left: 0px;
+		transition: 1s;
+	}
+	.banner .swipper li:nth-child(1){
+		background: red;
+	}
+	.banner .swipper li:nth-child(2){
+		background: orange;
+	}
+	.banner .swipper li:nth-child(3){
+		background: pink;
+	}
+	.banner .swipper li:nth-child(4){
+		background: cyan;
+	}
+	.banner .swipper li:nth-child(5){
+		background: blue;
+	}
+	.banner .swipper li:nth-child(6){
+		background: gray;
+	}
+</style>
+<body>
+	<div class="banner">
+		<ul class="swipper">
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+		</ul>
+	</div>
+</body>
+<script>
+	var li = $('.banner .swipper li');
+	function start(){
+		li.css({left:function(i){
+			return $(this).width()+(i-1)*80;
+		}}).eq(0).css('left',0);
+	}
+	start();
+	li.mouseenter(function(){
+		$(this).prevAll().addBack().css({left:function(i){
+			return i*80;
+		}});
+		var t = $(this).index();
+		$(this).nextAll().css({left:function(i){
+			return (t+i)*80+$(this).width();
+		}});
+	});
+	// $('.banner').mouseleave(start);
+
+
+	// li.mouseenter(function(){
+	// 	var index = $(this).index();
+	// 	li.each(function(i,val){
+	// 		if(i>index){
+	// 			$(val).stop(true);
+	// 			$(val).animate({left:$(this).width()+(i-1)*80});
+	// 		}else{
+	// 			$(val).animate({left:i*80});
+	// 		}
+	// 	})
+	// });
+	// $('.banner').mouseleave(function(){
+	// 	li.each(function(i,val){
+	// 		if(i != 0){
+	// 			$(val).animate({left:$(val).width()+(i-1)*80});
+	// 		}
+	// 	})
+	// });
+</script>
+</html>
